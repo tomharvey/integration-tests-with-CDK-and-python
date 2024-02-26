@@ -1,27 +1,16 @@
 import aws_cdk as cdk
 from aws_cdk import (
-    Stack,
-    aws_lambda,
     integ_tests_alpha,
 )
-from constructs import Construct
+from cdk_integ_runner_cwd_fix import fix_cwd
 
+# This needs to be before any import from your CDK app to work around a bug in the CDK
+fix_cwd()
 
-class HelloTestStack(Stack):
-    def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
-        super().__init__(scope, construct_id, **kwargs)
-
-        self.function = aws_lambda.Function(
-            self,
-            "MyFunction",
-            runtime=aws_lambda.Runtime.PYTHON_3_11,
-            handler="index.handler",
-            code=aws_lambda.Code.from_asset("./lambda"),
-        )
-
+from integration_tests_with_cdk_and_python.hello_world_stack import HelloWorldStack
 
 app = cdk.App()
-stack = HelloTestStack(app, "HelloTestStack")
+stack = HelloWorldStack(app, "HelloTestStack")
 
 integration_test = integ_tests_alpha.IntegTest(app, "Integ", test_cases=[stack])
 
