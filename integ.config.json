@@ -1,0 +1,10 @@
+{
+    "maxWorkers": 10,
+    "parallelRegions": [
+      "eu-west-1"
+    ],
+    "directory": "tests",
+    "language": "python",
+    "inspect-failures": true,
+    "update-on-failed": true
+}
