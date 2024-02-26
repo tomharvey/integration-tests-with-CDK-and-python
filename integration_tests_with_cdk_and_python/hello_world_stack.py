@@ -1,3 +1,5 @@
+import os
+
 from aws_cdk import (
     Stack,
     aws_lambda,
@@ -14,5 +16,5 @@ class HelloWorldStack(Stack):
             "MyFunction",
             runtime=aws_lambda.Runtime.PYTHON_3_11,
             handler="index.handler",
-            code=aws_lambda.Code.from_asset("./lambda"),
+            code=aws_lambda.Code.from_asset(f"{os.getcwd()}/lambda"),
         )

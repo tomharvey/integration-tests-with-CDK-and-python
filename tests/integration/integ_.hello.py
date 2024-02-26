@@ -20,7 +20,7 @@ function_invoke = integration_test.assertions.invoke_function(
 
 function_invoke.expect(
     integ_tests_alpha.ExpectedResult.object_like(
-        {"StatusCode": 200, "Payload": '"Hello world"'}
+        {"StatusCode": 200, "Payload": '"Hello real world"'}
     )
 )
 
